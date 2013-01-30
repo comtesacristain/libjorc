@@ -7,7 +7,10 @@
 Measurement newMeasurement(float q, char *u, float d, char *b) {
 	Measurement measurement;
 	measurement = (Measurement) malloc(sizeof(_measurement));
- 	measurement->add = add;	
+ 	measurement->add = &add;	
+	measurement->subtract = &subtract;	
+	measurement->multiply = &multiply;	
+	measurement->divide = &divide;	
 	measurement->quantity = q;
 	measurement->units = u;
 	measurement->dimension=d;
@@ -15,44 +18,76 @@ Measurement newMeasurement(float q, char *u, float d, char *b) {
 	return measurement;
 }
 
-Measurement add (Measurement this, Measurement a) {
-	Measurement x;
+Measurement add (Measurement self, Measurement a) {
+	Measurement product;
 	float q;
 	char *u;
-	if (!strcmp(a->base_units,this->base_units)) {
-		q = a->quantity + this->quantity;
+	if (!strcmp(a->base_units,self->base_units)) {
+		q = a->quantity + self->quantity;
 		u = a->base_units;
 	}
 	else {
-	q=0.0;
-	u="%";
+		q=0.0;
+		u="%";
 	}
-	x = newMeasurement(q,u,1.0,u);
-	return x;
+	product = newMeasurement(q,u,1.0,u);
+	return product;
 }
+
+Measurement subtract (Measurement self, Measurement a) {
+	Measurement product;
+	float q;
+	char *u;
+	if (!strcmp(a->base_units,self->base_units)) {
+		q  = self->quantity - a->quantity;
+		u = a->base_units;
+	}
+	else {
+		q=0.0;
+		u="%";
+	}
+	product = newMeasurement(q,u,1.0,u);
+	return product;
+}
+
 /*
-// Measurement subtract (Measurement meas_a, Measurement meas_b) {
-	// Measurement x;
-	
-	// x.quantity = meas_a.quantity - meas_b.quantity;
-	// return x;
-// }
+	Multiplication operator on Measurement. 
+*/
 
-static Measurement subtract(Measurement *self, Measurement b) {
-	Measurement result;
-	result.quantity  = self->quantity - b.quantity;
-	return result;
+Measurement multiply (Measurement self, Measurement a) {
+	Measurement product;
+	float q;
+	char *u;
+	if (!strcmp(a->base_units,self->base_units)) {
+		q  = self->quantity * a->quantity;
+		u = a->base_units;
+	}
+	else {
+		q=0.0;
+		u="%";
+	}
+	product = newMeasurement(q,u,1.0,u);
+	return product;
 }
 
-Measurement  multiply (Measurement meas_a, Measurement meas_b) {
-	Measurement x;
-	
-	x.quantity = meas_a.quantity * meas_b.quantity;
-	return x;
+/*
+	Division operator on Measurement. Check divisor is not zero
+*/
+
+Measurement divide (Measurement self, Measurement a) {
+	Measurement product;
+	float q;
+	char *u;
+	if (!strcmp(a->base_units,self->base_units)) {
+		if (a->quantity != 0) {
+			q  = self->quantity / a->quantity;
+			u = a->base_units;
+		}
+	}
+	else {
+		q=0.0;
+		u="%";
+	}
+	product = newMeasurement(q,u,1.0,u);
+	return product;
 }
-Measurement  divide (Measurement meas_a, Measurement meas_b) {
-	Measurement x;
-	
-	x.quantity = meas_a.quantity / meas_b.quantity;
-	return x;
-}*/
