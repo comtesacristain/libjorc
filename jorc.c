@@ -2,17 +2,6 @@
 #include "jorc.h"
 #include <stdio.h>
 
-int main() {
-	Measurement q,x;
-	Measurement m,a;
-	m = newMeasurement(1.0 ,"g/t", 10,"%");
-	a = newMeasurement(1.0 ,"g/t", 10,"%");
+Jorc newJorc() {
 
-	q=m->add(m,a);
-	//x=m.subtract(m,m);
-	printf("Quantity m= %5.2f %s\n",m->quantity,m->units);
-	printf("Quantity a= %5.2f %s \n",a->quantity,a->units);
-	printf("Quantity q= %5.2f %s \n",q->quantity,q->units);
-	//printf("Quantity 3= %5.2f \n",x.quantity);
-	return 0;
 }
