@@ -4,7 +4,7 @@
 typedef struct _unit * Unit;
 
 struct _unit {
-	char *units;
+    char *units;
     float dimension;
     char *base_units;
 } _unit;

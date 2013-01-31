@@ -2,17 +2,17 @@
 #define JORC_H
 
 typedef struct _jorc {
-	Measurement proven;
-	Measurement probable;
-	Measurement proven_probable;
-	Measurement measured;
-	Measurement indicated;
-	Measurement measured_indicated;
-	Measurement inferred;
-	Measurement other;
-	Measurement (*remnant_measured) (Measurement self);
-	Measurement (*remnant_indicated) (Measurement self);
-	Measurement (*remnant_measured_indicated) (Measurement self);
+	OreMeasure proven;
+	OreMeasure probable;
+	OreMeasure proven_probable;
+	OreMeasure measured;
+	OreMeasure indicated;
+	OreMeasure measured_indicated;
+	OreMeasure inferred;
+	OreMeasure other;
+	OreMeasure (*remnant_measured) (OreMeasure self);
+	OreMeasure (*remnant_indicated) (OreMeasure self);
+	OreMeasure (*remnant_measured_indicated) (OreMeasure self);
 	char inclusive;
 } Jorc;
 
