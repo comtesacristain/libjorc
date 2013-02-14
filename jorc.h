@@ -1,6 +1,8 @@
 #ifndef JORC_H
 #define JORC_H
 
+#include "ore_measure.h"
+
 typedef struct _jorc {
 	OreMeasure proven;
 	OreMeasure probable;
