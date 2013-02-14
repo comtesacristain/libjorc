@@ -5,8 +5,8 @@
 int main() {
 	Measurement q,x,mult,div;
 	Measurement m,a;
-	m = newMeasurement(1.0 ,"g/t", 10,"%");
-	a = newMeasurement(1.0 ,"g/t", 10,"%");
+	m = newMeasurement(1.0 ,"g/t");
+	a = newMeasurement(1.0 ,"g/t");
 
 	q=m->add(m,a);
 	x=m->subtract(a->add(q,a),m);
