@@ -1,7 +1,7 @@
 #ifndef MEASUREMENT_H
 #define MEASUREMENT_H
 
-#include "unit.h
+#include "unit.h"
 
 //#define MEASUREMENT 	float quantity; \
 //			char *units; \
