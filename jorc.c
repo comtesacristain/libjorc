@@ -3,5 +3,5 @@
 #include <stdio.h>
 
 Jorc newJorc() {
-
+	return newJorc;
 }

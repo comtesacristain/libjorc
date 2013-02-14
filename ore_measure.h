@@ -6,7 +6,7 @@ struct _ore_measure {
 	Measurement ore;
 	Measurement mineral;
 	Measurement grade;
-} _ore_measure
+} _ore_measure;
 
 OreMeasure newOreMeasure();
 

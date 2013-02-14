@@ -12,9 +12,7 @@ typedef struct _measurement *Measurement;
   struct _measurement {
      //MEASUREMENT;
 	float quantity;
-    char *units;
-    float dimension;
-    char *base_units;
+    Unit units;
 	Measurement (*add)(Measurement a, Measurement b);
 	Measurement (*subtract)(Measurement a, Measurement b);
 	Measurement (*multiply)(Measurement a, Measurement b);

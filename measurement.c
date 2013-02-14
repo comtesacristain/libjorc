@@ -4,7 +4,7 @@
 // Routine to add to Measurements together. Must check units are of similar types.
 
 
-Measurement newMeasurement(float q, char *u, float d, char *b) {
+Measurement newMeasurement(float q, char *u) {
 	Measurement measurement;
 	measurement = (Measurement) malloc(sizeof(_measurement));
  	measurement->add = &add;	
@@ -12,19 +12,17 @@ Measurement newMeasurement(float q, char *u, float d, char *b) {
 	measurement->multiply = &multiply;	
 	measurement->divide = &divide;	
 	measurement->quantity = q;
-	measurement->units = u;
-	measurement->dimension=d;
-	measurement->base_units=b;
+	measurement->units = newUnits(u);
 	return measurement;
 }
 
 Measurement add (Measurement self, Measurement a) {
 	Measurement product;
-	float q;
+	float q, d;
 	char *u;
-	if (!strcmp(a->base_units,self->base_units)) {
-		q = a->quantity + self->quantity;
-		u = a->base_units;
+	if ((d=UnitCompare(self, a)) != 0) {
+		q = a->quantity + self->quantity *d;
+		u = self->units;
 	}
 	else {
 		q=0.0;
@@ -36,11 +34,11 @@ Measurement add (Measurement self, Measurement a) {
 
 Measurement subtract (Measurement self, Measurement a) {
 	Measurement product;
-	float q;
+	float q, d;
 	char *u;
-	if (!strcmp(a->base_units,self->base_units)) {
-		q  = self->quantity - a->quantity;
-		u = a->base_units;
+	if ((d=UnitCompare(self, a)) != 0) {
+		q  = self->quantity - a->quantity * d;
+		u = self->units;
 	}
 	else {
 		q=0.0;
@@ -56,11 +54,11 @@ Measurement subtract (Measurement self, Measurement a) {
 
 Measurement multiply (Measurement self, Measurement a) {
 	Measurement product;
-	float q;
+	float q,d;
 	char *u;
-	if (!strcmp(a->base_units,self->base_units)) {
+	if ((d=UnitCompare(self, a)) != 0) {
 		q  = self->quantity * a->quantity;
-		u = a->base_units;
+		u = self->units;
 	}
 	else {
 		q=0.0;
@@ -76,12 +74,12 @@ Measurement multiply (Measurement self, Measurement a) {
 
 Measurement divide (Measurement self, Measurement a) {
 	Measurement product;
-	float q;
+	float q,d;
 	char *u;
-	if (!strcmp(a->base_units,self->base_units)) {
+	if ((d=UnitCompare(self, a)) != 0) {
 		if (a->quantity != 0) {
 			q  = self->quantity / a->quantity;
-			u = a->base_units;
+			u = self->units;
 		}
 	}
 	else {
