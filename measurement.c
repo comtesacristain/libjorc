@@ -28,7 +28,7 @@ Measurement add (Measurement self, Measurement a) {
 		q=0.0;
 		u="%";
 	}
-	product = newMeasurement(q,u,1.0,u);
+	product = newMeasurement(q,u);
 	return product;
 }
 
@@ -44,7 +44,7 @@ Measurement subtract (Measurement self, Measurement a) {
 		q=0.0;
 		u="%";
 	}
-	product = newMeasurement(q,u,1.0,u);
+	product = newMeasurement(q,u);
 	return product;
 }
 
@@ -64,7 +64,7 @@ Measurement multiply (Measurement self, Measurement a) {
 		q=0.0;
 		u="%";
 	}
-	product = newMeasurement(q,u,1.0,u);
+	product = newMeasurement(q,u);
 	return product;
 }
 
@@ -86,6 +86,6 @@ Measurement divide (Measurement self, Measurement a) {
 		q=0.0;
 		u="%";
 	}
-	product = newMeasurement(q,u,1.0,u);
+	product = newMeasurement(q,u);
 	return product;
 }

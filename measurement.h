@@ -21,7 +21,7 @@ typedef struct _measurement *Measurement;
   } _measurement;
  
   void destroy(Measurement this);
-  Measurement newMeasurement(float q, char *u, float d, char *b);
+  Measurement newMeasurement(float q, char *u);
   Measurement add(Measurement a, Measurement b);
   Measurement subtract(Measurement a, Measurement b);
   Measurement multiply(Measurement a, Measurement b);
