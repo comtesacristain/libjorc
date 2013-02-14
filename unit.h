@@ -11,6 +11,7 @@ struct _unit {
 
 Unit newUnit(char *u);
 
-int UnitCompare(Unit self,Unit a);
+float UnitCompare(Unit self,Unit a);
 
 #endif
+

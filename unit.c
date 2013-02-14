@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include "unit.h"
 Unit newUnit(char * u) {
 	Unit unit;
 	unit->units = u;
@@ -13,3 +15,4 @@ float UnitCompare(Unit self, Unit a) {
 	}
 	return 0;
 }
+
